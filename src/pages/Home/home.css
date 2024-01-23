@@ -1,0 +1,150 @@
+header {
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    height: 80%;
+    padding: 10px 20px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    ;
+}
+
+header button {
+    background-color: transparent;
+    border: none;
+    color: transparent;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    color: black;
+    margin-left: 620px;
+    font-size: 2rem;
+}
+
+.firstImg {
+  width: 754px;
+  height: 455px;
+  margin-top: 229px;
+  left: 199px;
+  border-radius: 2px;
+  border: 1px;
+  margin-bottom: 30px;
+}
+
+.firstText {
+  width: 540px;
+  height: 328px;
+  margin-top: 80px;
+  margin-left: 25px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  color: #C31815;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: 0.02em;
+  text-align: left;
+
+}
+
+.firstTitle {
+  width: 540px;
+  height: 123px;
+  color: #2A2A2A;
+  font-family: IBM Plex Serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.firstIntroduction {
+  width: 500px;
+  height: 94px;
+  margin-top: 40px;
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #2A2A2A
+}
+
+.firstDate {
+  width: 500px;
+  height: 94px;
+  margin-top: 40px;
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #2A2A2A
+}
+
+.firstLink {
+  width: 167px;
+  height: 36px;
+  margin-top: 25px;
+  padding: 5px;
+  border-radius: 5px;
+  gap: 10px;
+  background-color: #05D465;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #000000;
+}
+
+.firstLink p {
+  align-items: center;
+}
+
+.DateLink {
+  display: flex;
+}
+
+.center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
