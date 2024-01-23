@@ -4,29 +4,18 @@ import { ThunkDispatch } from 'redux-thunk';
 // type GlobalState = ReturnType<typeof store.getState>;
 
 export type RootState = {
-  news: {
-    count: number,
-    page: number,
-    totalPages: number,
-    nextPage: number,
-    previousPage: number,
-    showingFrom: number,
-    showingTo: number,
-    items: [{
-      data_publicacao: string,
-      destaque: boolean,
-      editorias: string,
-      id: number,
-      imagens: string,
-      introducao: string,
-      link: string,
-      produto_id: number,
-      produtos: string,
-      produtos_relacionados: string,
-      tipo: string,
-      titulo: string,
-    }],
-  },
+  news: News,
+};
+
+export type News = {
+  count: number,
+  page: number,
+  totalPages: number,
+  nextPage: number,
+  previousPage: number,
+  showingFrom: number,
+  showingTo: number,
+  items: ItemType[],
 };
 
 export const INITIAL_STATE = {
@@ -51,8 +40,25 @@ export const INITIAL_STATE = {
       produtos_relacionados: '',
       tipo: '',
       titulo: '',
+      favorite: false,
     }],
   },
+};
+
+export type ItemType = {
+  data_publicacao: string,
+  destaque: boolean,
+  editorias: string,
+  id: number,
+  imagens: string,
+  introducao: string,
+  link: string,
+  produto_id: number,
+  produtos: string,
+  produtos_relacionados: string,
+  tipo: string,
+  titulo: string,
+  favorite: boolean,
 };
 
 export type Dispatch = ThunkDispatch<RootState, unknown, AnyAction>;

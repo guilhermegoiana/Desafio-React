@@ -10,6 +10,8 @@ const newsReducer = (state = initialState, action: AnyAction) => {
       return { ...state, loading: true };
     case REQUEST_SUCCESSFULL:
       return { ...state, news: action.payload, loading: false };
+    case 'FAVORITE':
+      return { ...state, news: { items: action.payload } };
     default:
       return state;
   }

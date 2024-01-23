@@ -1,0 +1,38 @@
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 1rem 0;
+    padding: 0 1rem;
+    border-bottom: 1px solid #e6e6e6;
+    height: 3rem;
+    background-color: #fff;
+    margin-top: 50px;
+    z-index: 1;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.35);
+}
+
+.navLink {
+    text-decoration: none;
+    color: #2A2A2A;
+    font-size: 1.2rem;
+    font-weight: 500;
+    /* margin: 0 1rem; */
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.navLink a {
+    text-decoration: none;
+    color: #2A2A2A;
+    font-size: 1.2rem;
+    font-weight: 500;
+    /* margin: 0 1rem; */
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}

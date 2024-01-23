@@ -6,7 +6,7 @@ header {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #e6e6e6;
-    height: 100px;
+    height: 130px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -16,8 +16,7 @@ header {
 header .logo {
     display: flex;
     align-items: center;
-    height: 80%;
-    padding: 10px 20px;
+    height: 100%;
 }
 
 header h1 {
@@ -54,10 +53,16 @@ header button {
   width: 754px;
   height: 455px;
   margin-top: 229px;
-  left: 199px;
+  margin-right: 150px;
   border-radius: 2px;
   border: 1px;
   margin-bottom: 30px;
+  margin-left: 100px;
+}
+
+.favoriteFlex {
+  display: flex;
+  justify-content: space-between;
 }
 
 .firstText {
@@ -134,7 +139,7 @@ header button {
   color: #000000;
 }
 
-.firstLink p {
+.firstLink {
   align-items: center;
 }
 
@@ -144,7 +149,7 @@ header button {
 
 .center {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
 }
