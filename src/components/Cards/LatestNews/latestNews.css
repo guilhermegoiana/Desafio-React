@@ -17,22 +17,39 @@
     color: #2A2A2A;
     font-size: 1.2rem;
     font-weight: 500;
-    /* margin: 0 1rem; */
-    margin-left: 50px;
+    margin-left: 130px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 50%;
 }
-.navLink a {
-    text-decoration: none;
+.navLink button {
+    border-style: none;
+    background-color: white;
+    font-family: Poppins;
+    line-height: 23px;
+    letter-spacing: 0.05em;
     color: #2A2A2A;
     font-size: 1.2rem;
     font-weight: 500;
-    /* margin: 0 1rem; */
-    margin-left: 50px;
+    margin-left: 100px;
+}
+
+.navLink button:hover {
+    color: #05D465;
+    cursor: pointer;
+}
+
+.directionNews {
+    width: 60px;
+    height: 30px;
+    padding: 5px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+    justify-content: space-evenly;
+    margin-right: 10px;
+}
+
+.directionNews {
+  background-color: white;
+  border-style: none;
 }

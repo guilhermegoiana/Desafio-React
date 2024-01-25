@@ -1,79 +1,89 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { Link } from 'react-router-dom';
-import { ItemType, RootState } from '../../../types';
+import horizontal from '../../../assets/imageHorizontal.svg';
+import vertical from '../../../assets/imageVertical.svg';
+import { listFilter } from '../../../redux/actions/newsActions';
+import { RootState } from '../../../types';
 import './latestNews.css';
 
 function LatestNews() {
   const getNews = useSelector((state: RootState) => state.news);
-  const [listPresentation, setListPresentation] = useState(getNews.items);
+  const dispatch = useDispatch();
 
   const handleNews = (tipoFiltro: string) => {
-    let listFavorites: ItemType[] = [];
     const getLocalStorageFavoriteNews = localStorage.getItem('favoriteNews');
     switch (tipoFiltro) {
       case 'Favoritas':
         if (getLocalStorageFavoriteNews !== null) {
-          listFavorites = JSON.parse(getLocalStorageFavoriteNews);
+          const { favorites } = getNews;
+          dispatch(listFilter(favorites));
         }
-        setListPresentation(
-          listFavorites.filter((news) => news.favorite === true),
-        );
         break;
-      case 'Mais recentes':
-        setListPresentation(listPresentation.map((news) => news));
+      case 'Mais recentes': {
+        const latest = getNews.items.sort((a, b) => {
+          return (new Date(
+            b.data_publicacao,
+          )
+          ).getTime() - (new Date(a.data_publicacao)).getTime();
+        });
+        dispatch(listFilter(latest));
         break;
-      case 'Release':
-        setListPresentation(
-          getNews.items.filter((news) => news.tipo === 'Release'),
-        );
+      }
+      case 'Release': {
+        const release = getNews.items.filter((news) => news.tipo === 'Release');
+        dispatch(listFilter(release));
         break;
-      case 'Noticia':
-        setListPresentation(
-          getNews.items.filter((news) => news.tipo === 'Noticia'),
-        );
+      }
+      case 'Notícia': {
+        const newsFilter = getNews.items.filter((news) => news.tipo === 'Notícia');
+        dispatch(listFilter(newsFilter));
         break;
+      }
       default:
-        setListPresentation(getNews.items);
+        return null;
     }
+  };
+
+  const handleDirection = () => {
+    return true;
   };
 
   return (
     <nav className="navContainer">
       <div className="navLink">
-        <Link
-          to="/recent"
+        <button
           onClick={ () => {
             handleNews('Mais recentes');
           } }
         >
           Mais recentes
-        </Link>
-        <Link
-          to="/release"
+        </button>
+        <button
           onClick={ () => {
             handleNews('Release');
           } }
         >
           Release
-        </Link>
-        <Link
-          to="/news"
+        </button>
+        <button
           onClick={ () => {
             handleNews('Notícia');
           } }
         >
           Notícia
-        </Link>
-        <Link
-          to="/favorites"
+        </button>
+        <button
           onClick={ () => {
             handleNews('Favoritas');
           } }
         >
           Favoritas
-        </Link>
+        </button>
       </div>
+      <button className="directionNews" onClick={ handleDirection }>
+        <img src={ horizontal } alt="" />
+        <img src={ vertical } alt="" />
+      </button>
     </nav>
   );
 }

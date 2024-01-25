@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import favoriteBtn from '../../assets/favoriteBtn.svg';
 import nonFavoriteBtn from '../../assets/nonFavorited.svg';
 import { favoriteAction } from '../../redux/actions/newsActions';
-import { RootState } from '../../types';
+import { ItemType, RootState } from '../../types';
 import './Favorite.css';
 
-function ButtonFavoriteNews({ id }: { id: number }) {
+function ButtonFavoriteNews({ item }: { item: ItemType }) {
   const getNews = useSelector((state: RootState) => state.news);
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
+  const { id } = item;
 
   useEffect(() => {
     const getStorage = localStorage.getItem('favoriteNews');
@@ -17,35 +18,30 @@ function ButtonFavoriteNews({ id }: { id: number }) {
       localStorage.setItem('favoriteNews', JSON.stringify([]));
     } else {
       const getStorageParse = JSON.parse(getStorage);
-      if (getStorageParse.includes(id)) {
+      const checkIfFavorite = getStorageParse.find(
+        (favorite: ItemType) => favorite.id === id,
+      );
+      if (checkIfFavorite) {
         setIsFavorite(true);
       }
+      dispatch(favoriteAction(getStorageParse));
     }
-  }, [setIsFavorite, id]);
+  }, [setIsFavorite, id, dispatch]);
 
   const saveFavorite = () => {
-    const favoriteNews = getNews.items.map((news) => {
-      if (id === news.id) {
-        return { ...news, favorite: !news.favorite };
+    const { favorites } = getNews;
+    const checkIfFavorite = getNews.favorites.find((news) => news.id === id);
+    let favoriteNews: ItemType[] = [];
+    if (!checkIfFavorite) {
+      const getFavoriteNews = getNews.items.find((news) => news.id === id);
+      if (getFavoriteNews !== undefined) {
+        favoriteNews = [...favorites, getFavoriteNews];
       }
-      return news;
-    });
-    dispatch(favoriteAction(favoriteNews));
-    const getStorage = localStorage.getItem('favoriteNews');
-    if (getStorage !== null) {
-      const getStorageParse = JSON.parse(getStorage);
-      if (getStorageParse.includes(id)) {
-        const getStorageFilter = getStorageParse.filter(
-          (favorite: number) => favorite !== id,
-        );
-        localStorage.setItem(
-          'favoriteNews',
-          JSON.stringify(getStorageFilter),
-        );
-      } else {
-        localStorage.setItem('favoriteNews', JSON.stringify([...getStorageParse, id]));
-      }
+    } else {
+      favoriteNews = favorites.filter((news) => news.id !== id);
     }
+    dispatch(favoriteAction(favoriteNews));
+    localStorage.setItem('favoriteNews', JSON.stringify(favoriteNews));
     setIsFavorite(!isFavorite);
   };
 

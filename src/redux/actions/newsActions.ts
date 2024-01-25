@@ -34,3 +34,10 @@ export const favoriteAction = (data: ItemType[]) => ({
   type: 'FAVORITE',
   payload: data,
 });
+
+export const FILTER = 'FILTER';
+
+export const listFilter = (data: ItemType[]) => ({
+  type: 'FILTER',
+  payload: data,
+});

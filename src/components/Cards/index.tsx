@@ -28,7 +28,7 @@ function Cards({ items }: { items: ItemType[] }) {
                   </Link>
                 </div>
                 <hr />
-                <ButtonFavoriteNews id={ item.id } />
+                <ButtonFavoriteNews item={ item } />
               </div>
             </div>
           ))

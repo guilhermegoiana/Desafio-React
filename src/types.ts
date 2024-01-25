@@ -7,6 +7,12 @@ export type RootState = {
   news: News,
 };
 
+export type PropFavorite = {
+  id: {
+    id: number,
+  }
+};
+
 export type News = {
   count: number,
   page: number,
@@ -16,6 +22,8 @@ export type News = {
   showingFrom: number,
   showingTo: number,
   items: ItemType[],
+  filter: ItemType[],
+  favorites: ItemType[],
 };
 
 export const INITIAL_STATE = {
@@ -27,6 +35,22 @@ export const INITIAL_STATE = {
     previousPage: 0,
     showingFrom: 0,
     showingTo: 0,
+    favorites: [],
+    filter: [{
+      data_publicacao: '',
+      destaque: true,
+      editorias: '',
+      id: 0,
+      imagens: '',
+      introducao: '',
+      link: '',
+      produto_id: 0,
+      produtos: '',
+      produtos_relacionados: '',
+      tipo: '',
+      titulo: '',
+      favorite: false,
+    }],
     items: [{
       data_publicacao: '',
       destaque: true,
