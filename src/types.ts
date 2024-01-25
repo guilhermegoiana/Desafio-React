@@ -4,29 +4,26 @@ import { ThunkDispatch } from 'redux-thunk';
 // type GlobalState = ReturnType<typeof store.getState>;
 
 export type RootState = {
-  news: {
-    count: number,
-    page: number,
-    totalPages: number,
-    nextPage: number,
-    previousPage: number,
-    showingFrom: number,
-    showingTo: number,
-    items: [{
-      data_publicacao: string,
-      destaque: boolean,
-      editorias: string,
-      id: number,
-      imagens: string,
-      introducao: string,
-      link: string,
-      produto_id: number,
-      produtos: string,
-      produtos_relacionados: string,
-      tipo: string,
-      titulo: string,
-    }],
-  },
+  news: News,
+};
+
+export type PropFavorite = {
+  id: {
+    id: number,
+  }
+};
+
+export type News = {
+  count: number,
+  page: number,
+  totalPages: number,
+  nextPage: number,
+  previousPage: number,
+  showingFrom: number,
+  showingTo: number,
+  items: ItemType[],
+  filter: ItemType[],
+  favorites: ItemType[],
 };
 
 export const INITIAL_STATE = {
@@ -38,6 +35,22 @@ export const INITIAL_STATE = {
     previousPage: 0,
     showingFrom: 0,
     showingTo: 0,
+    favorites: [],
+    filter: [{
+      data_publicacao: '',
+      destaque: true,
+      editorias: '',
+      id: 0,
+      imagens: '',
+      introducao: '',
+      link: '',
+      produto_id: 0,
+      produtos: '',
+      produtos_relacionados: '',
+      tipo: '',
+      titulo: '',
+      favorite: false,
+    }],
     items: [{
       data_publicacao: '',
       destaque: true,
@@ -51,8 +64,25 @@ export const INITIAL_STATE = {
       produtos_relacionados: '',
       tipo: '',
       titulo: '',
+      favorite: false,
     }],
   },
+};
+
+export type ItemType = {
+  data_publicacao: string,
+  destaque: boolean,
+  editorias: string,
+  id: number,
+  imagens: string,
+  introducao: string,
+  link: string,
+  produto_id: number,
+  produtos: string,
+  produtos_relacionados: string,
+  tipo: string,
+  titulo: string,
+  favorite: boolean,
 };
 
 export type Dispatch = ThunkDispatch<RootState, unknown, AnyAction>;

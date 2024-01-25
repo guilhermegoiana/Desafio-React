@@ -1,0 +1,55 @@
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 1rem 0;
+    padding: 0 1rem;
+    border-bottom: 1px solid #e6e6e6;
+    height: 3rem;
+    background-color: #fff;
+    margin-top: 50px;
+    z-index: 1;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.35);
+}
+
+.navLink {
+    text-decoration: none;
+    color: #2A2A2A;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 130px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+}
+.navLink button {
+    border-style: none;
+    background-color: white;
+    font-family: Poppins;
+    line-height: 23px;
+    letter-spacing: 0.05em;
+    color: #2A2A2A;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 100px;
+}
+
+.navLink button:hover {
+    color: #05D465;
+    cursor: pointer;
+}
+
+.directionNews {
+    width: 60px;
+    height: 30px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 10px;
+}
+
+.directionNews {
+  background-color: white;
+  border-style: none;
+}

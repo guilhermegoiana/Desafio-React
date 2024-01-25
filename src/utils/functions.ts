@@ -2,7 +2,6 @@ import moment from 'moment';
 
 const calculateDate = (date: any) => {
   const dateFormat = moment(date, 'DDMMYYYY').fromNow();
-  console.log(dateFormat);
 
   const now = new Date();
   const past = new Date(dateFormat);

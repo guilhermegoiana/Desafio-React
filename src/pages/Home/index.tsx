@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import trybeLogo from '../../assets/trybe.svg';
+import trybeLogo from '../../assets/image 68.png';
+import Cards from '../../components/Cards';
+import LatestNews from '../../components/Cards/LatestNews';
+import ButtonFavoriteNews from '../../components/favoriteBtn';
 import { newsAction } from '../../redux/actions/newsActions';
 import { Dispatch, RootState } from '../../types';
 import calculateDate from '../../utils/functions';
@@ -10,14 +13,33 @@ import './home.css';
 function Home() {
   const navigate = useNavigate();
   const dispatch: Dispatch = useDispatch();
+  const [readMore, setReadMore] = useState('Show More');
 
   const news = useSelector((state: RootState) => state.news);
-
-  console.log(news.items[0].imagens);
+  const latestNew = news.count !== 0 ? news.items[0] : '';
+  const images = latestNew ? JSON.parse(latestNew.imagens) : {};
 
   useEffect(() => {
     dispatch(newsAction());
   }, [dispatch]);
+
+  const cardNews = () => {
+    if (readMore === 'Show More') {
+      return news.filter.slice(0, 9);
+    }
+    return news.filter.slice(0, 18);
+  };
+
+  const handleReadMore = () => {
+    if (readMore === 'Show Less') {
+      setReadMore('Show More');
+      window.scrollTo({
+        top: 620,
+      });
+    } else {
+      setReadMore('Show Less');
+    }
+  };
 
   return (
     <div className="App">
@@ -33,9 +55,12 @@ function Home() {
       ) : (
         <div>
           <div className="center">
-            <img src={ JSON.parse(news.items[0].imagens) } alt="" className="firstImg" />
+            <img src={ `https://agenciadenoticias.ibge.gov.br/${images.image_intro}` } alt="" className="firstImg" />
             <div className="firstText">
-              <p className="maisRecente">Notícia mais recente</p>
+              <div className="favoriteFlex">
+                <p className="maisRecente">Notícia mais recente</p>
+                <ButtonFavoriteNews item={ news.items[0] } />
+              </div>
               <h2 className="firstTitle">{news.items[0].titulo}</h2>
               <p className="firstIntroduction">{news.items[0].introducao}</p>
               <div className="DateLink">
@@ -43,7 +68,7 @@ function Home() {
                   {calculateDate(news.items[0].data_publicacao)}
                 </p>
                 <Link
-                  to={ `/noticia/${news.items[0].id}` }
+                  to={ `${news.items[0].link}` }
                   className="firstLink"
                 >
                   Leia a notícia aqui
@@ -52,16 +77,20 @@ function Home() {
             </div>
           </div>
           <main>
-            <h2>Notícias</h2>
+            <LatestNews />
             <section className="news">
-              {news.items.map((item) => (
-                <article key={ item.id }>
-                  <h3>{ item.titulo }</h3>
-                  <p>{ item.introducao }</p>
-                </article>
-              ))}
+              <Cards items={ cardNews() } />
             </section>
           </main>
+          <footer className="footer">
+            <button
+              type="button"
+              className="loadMore"
+              onClick={ handleReadMore }
+            >
+              {readMore}
+            </button>
+          </footer>
         </div>
       )}
     </div>
